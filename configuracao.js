@@ -1,23 +1,19 @@
 /* Configuração central do site. Troque os textos e dados da empresa aqui. */
 window.configuracaoEmpresa = {
-  marca: { nome: "RNCWEB", subtitulo: "Assistência técnica" },
-  nomeEmpresa: "RNCWEB Assistência Técnica",
+  marca: { nome: "Megatech", subtitulo: "Assistência técnica" },
+  nomeEmpresa: "Megatech",
 
   // Número real com DDI e DDD, só dígitos (ex.: 5567999999999). Vazio = contato desativado com aviso.
-  whatsapp: "",
-  mensagemPadrao: "Olá! Vim pelo site e gostaria de um orçamento de reparo.",
+  whatsapp: "5551996538103",
+  mensagemPadrao: "Olá! Vim pelo site da Megatech e gostaria de mais informações.",
 
   endereco: {
-    rua: "Rua Exemplo, 000 — Centro",
-    cidade: "Sua cidade — UF",
-    referencia: "Endereço demonstrativo",
+    rua: "Consulte pelo WhatsApp",
+    cidade: "",
+    referencia: "",
     linkMapa: "",
   },
-  horarios: [
-    ["Segunda a sexta", "09h às 18h"],
-    ["Sábado", "09h às 13h"],
-    ["Domingo e feriados", "Fechado"],
-  ],
+  horarios: [["Atendimento", "Consulte pelo WhatsApp"]],
   email: "",
 
   inicio: {
@@ -28,7 +24,7 @@ window.configuracaoEmpresa = {
     descricaoLinha2: "performance para o seu dispositivo.",
     botaoPrincipal: "Solicitar reparo",
     botaoSecundario: "Ver serviços",
-    atendimento: "Atendimento agora",
+    atendimento: "Fale conosco",
     garantias: [
       ["Reparo rápido", "na maioria dos casos"],
       ["Garantia real", "no serviço"],
@@ -62,17 +58,17 @@ window.configuracaoEmpresa = {
   ],
 
   diferenciais: [
-    ["Reparo rápido", "A maioria dos reparos de tela, bateria e conector fica pronta no mesmo dia, após o diagnóstico."],
-    ["Garantia real", "Todo serviço sai com garantia por escrito. Informe aqui o prazo praticado pela loja."],
+    ["Reparo rápido", "Consulte o prazo de reparo de acordo com o diagnóstico do aparelho."],
+    ["Garantia real", "Consulte as condições e o prazo de garantia aplicáveis ao seu serviço."],
     ["Peças de alta qualidade", "Peças selecionadas e testadas antes da instalação, com opção de peça original quando disponível."],
     ["Orçamento antes do reparo", "Nada é feito sem a sua aprovação: você recebe o diagnóstico e o valor antes de qualquer serviço."],
   ],
 
   perguntas: [
     ["Quanto tempo leva o reparo?", "Depende do serviço e da disponibilidade da peça. O prazo é informado junto com o orçamento."],
-    ["O diagnóstico tem custo?", "Defina aqui a política da loja para o diagnóstico."],
+    ["O diagnóstico tem custo?", "Entre em contato para consultar as condições do diagnóstico."],
     ["Meus dados ficam seguros?", "O aparelho é manuseado só pela equipe técnica. Sempre que possível, faça um backup antes de trazer."],
-    ["Vocês atendem quais marcas?", "Liste aqui as marcas e modelos atendidos pela loja."],
+    ["Vocês atendem quais marcas?", "Informe a marca e o modelo do aparelho pelo WhatsApp para consultar o atendimento."],
   ],
 
   animacao: {
