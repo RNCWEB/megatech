@@ -13,5 +13,6 @@
       "database_id": "71cb0769-0b99-4aae-a43e-fdcb46ca2abe",
       "migrations_dir": "migrations"
     }
-  ]
+  ],
+  "keep_vars": true
 }
