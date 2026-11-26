@@ -533,3 +533,52 @@ section[data-chapter="4"] {
 /* RNCWEB: os links apontam para o conteúdo, não para a área vazia da cena. */
 .ch .copy[id], #loja, #acessorios, #celulares-novos, #avaliacoes, #lista-produtos { scroll-margin-top: 8rem; }
 @media(max-aspect-ratio:115/100),(max-width:760px){html{scroll-behavior:auto}.ch .copy[id], #loja, #acessorios, #celulares-novos, #avaliacoes, #lista-produtos{scroll-margin-top:6.5rem}}
+
+/* RNCWEB */
+.top-actions .mt-phones-cta {
+  position:relative; isolation:isolate; overflow:hidden;
+  display:flex; align-items:center; justify-content:center; gap:.55rem;
+  padding:.48rem .85rem;
+  background:linear-gradient(118deg,#c2f8ff 0%,#64dfff 42%,#38aaff 100%);
+  color:#031939; text-shadow:none;
+  box-shadow:inset 0 0 0 1px #edfdff,inset 0 0 0 3px #77d9ff,0 0 8px #55d7ff,0 0 20px #087affb0;
+}
+.mt-phones-cta::before {
+  content:""; position:absolute; z-index:-1; pointer-events:none;
+  inset:-30% auto -30% -65%; width:42%;
+  background:linear-gradient(90deg,transparent,#ffffffb0,transparent);
+  transform:translateX(0) skewX(-22deg);
+  animation:mt-phone-shine 3.8s ease-in-out 3;
+}
+@keyframes mt-phone-shine {
+  0%,60%{transform:translateX(0) skewX(-22deg)}
+  90%,100%{transform:translateX(440%) skewX(-22deg)}
+}
+.mt-phones-icon{flex:none}
+.mt-phones-label{display:grid;gap:1px;text-align:left;line-height:1.14}
+.mt-phones-label small{font-size:.53rem;letter-spacing:.1em;font-weight:800}
+.mt-phones-label strong{font-size:1rem;font-weight:850}
+.mt-phones-arrow{font-size:1.15rem;flex:none;line-height:1}
+.top-actions .mt-phones-cta:hover {
+  background:linear-gradient(118deg,#e5fcff,#7de8ff 48%,#45baff);
+  box-shadow:inset 0 0 0 1px #fff,0 0 12px #73e7ff,0 0 26px #087affb0;
+}
+@media(min-width:761px) and (max-width:1120px){
+  .top .open{display:none}
+  .top .brand{margin-right:auto}
+  .top{gap:.8rem}
+}
+@media(max-width:760px){
+  .top{display:grid;grid-template-columns:minmax(70px,auto) minmax(0,1fr);align-items:center;column-gap:clamp(.45rem,2vw,.8rem);padding-top:.8rem;padding-bottom:1.7rem}
+  .top .brand{margin:0;min-width:0}
+  .top .brand-logo{width:clamp(70px,25vw,115px)}
+  .top-actions{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.45rem;min-width:0}
+  .top-actions .btn-small:not(.mt-phones-cta){text-align:center;padding:.48rem .38rem;font-size:clamp(.69rem,2.75vw,.86rem);line-height:1.3}
+  .top-actions .mt-phones-cta{grid-column:1/-1;justify-content:space-between;gap:.38rem;padding:.42rem .65rem}
+  .mt-phones-label{flex:1}
+  .mt-phones-label strong{font-size:clamp(.86rem,3.45vw,1.03rem)}
+  .mt-phones-label small{font-size:.48rem}
+  .mt-phones-icon{width:18px;height:18px}
+  .ch .copy[id],#loja,#acessorios,#celulares-novos,#avaliacoes,#lista-produtos{scroll-margin-top:8.5rem}
+}
+@media(prefers-reduced-motion:reduce){.mt-phones-cta::before{animation:none}}
