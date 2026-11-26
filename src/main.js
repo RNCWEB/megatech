@@ -20,7 +20,7 @@ import {
 import { buildPhone } from './phone.js';
 import { createChoreo } from './choreo.js';
 import { buildBench, buildEnvironment, buildLights } from './bench.js';
-import { initUI } from './ui.js';
+import { initUI, chapterScrollY, navigationViewport } from './ui.js';
 
 const PI = Math.PI;
 const canvasEl = document.getElementById('bench');
@@ -135,16 +135,20 @@ async function start() {
   let chapterTarget = 0, chapter = params.has('ch') ? parseFloat(params.get('ch')) : 0;
   function readScroll() {
     if (params.has('ch')) return (chapterTarget = parseFloat(params.get('ch')));
-    const mid = scrollY + innerHeight / 2;
-    const centers = sections.map((s) => s.offsetTop + s.offsetHeight / 2);
-    centers[0] = Math.min(centers[0], innerHeight / 2);
+    const view = navigationViewport();
+    const stops = sections.map(s => chapterScrollY(s, view));
     let f = 0;
-    for (let i = 0; i < centers.length - 1; i++) {
-      if (mid >= centers[i]) f = i + clamp01((mid - centers[i]) / (centers[i + 1] - centers[i]));
+    for (let i = 0; i < stops.length - 1; i++) {
+      if (view.y >= stops[i]) f = i + clamp01((view.y - stops[i]) / Math.max(1, stops[i + 1] - stops[i]));
     }
     chapterTarget = f;
   }
   addEventListener('scroll', readScroll, { passive: true });
+  addEventListener('resize', readScroll, { passive: true });
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(readScroll);
+    sections.forEach(s => observer.observe(s));
+  }
   readScroll();
   if (!params.has('ch')) chapter = chapterTarget;
 

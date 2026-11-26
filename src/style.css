@@ -526,3 +526,6 @@ address {
 @media(max-width:600px){.mt-store-gates{gap:.6rem}.mt-gate{padding:.75rem}.mt-gate p{font-size:.8rem}.mt-gate span{font-size:.8rem}.mt-store-tools{grid-template-columns:1fr}.mt-quick{margin-top:.8rem}.mt-quick a{padding:.42rem .6rem}.hero .hint{margin-top:1rem}.hero .actions{margin-top:1rem;gap:1rem}}
 @media(max-width:380px){.mt-store-gates{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.mt-gate{transition:none}.mt-gate:hover{transform:none}}
+
+/* RNCWEB */
+.mt-shelf-head,.mt-store-inner>.mt-reviews-label,.mt-reviews-inner>.mt-reviews-label{scroll-margin-top:8rem}

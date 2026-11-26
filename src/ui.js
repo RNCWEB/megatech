@@ -2,6 +2,77 @@
 // Interface em HTML: ordem de serviço (navegação) e pedido de orçamento.
 const WHATSAPP = '5551996538103';
 
+// RNCWEB
+export function navigationViewport() {
+  return { y: window.scrollY, height: window.innerHeight,
+    inset: Math.ceil(document.querySelector('.top')?.getBoundingClientRect().bottom || 0) + 12,
+    narrow: matchMedia('(max-aspect-ratio: 115/100), (max-width: 760px)').matches };
+}
+
+export function chapterScrollY(section, view = navigationViewport()) {
+  if (section.id === 'chegou') return 0;
+  const copy = section.querySelector('.copy');
+  if (!copy) return section.getBoundingClientRect().top + view.y;
+  const rect = copy.getBoundingClientRect();
+  const bottomSpace = view.narrow ? Math.max(20, view.height * .06) : 24;
+  const available = Math.max(1, view.height - view.inset - bottomSpace);
+  const top = rect.height >= available ? view.inset :
+    view.narrow ? Math.max(view.inset, view.height - bottomSpace - rect.height) :
+    Math.max(view.inset, (view.height - rect.height) / 2);
+  return Math.max(0, rect.top + view.y - top);
+}
+
+let activeAnchor = '';
+function anchorTarget(hash) {
+  try { return document.getElementById(decodeURIComponent(hash.slice(1))); }
+  catch { return null; }
+}
+function navigateAnchor(hash, smooth = true) {
+  const target = anchorTarget(hash);
+  if (!target || target.hidden) return false;
+  const view = navigationViewport();
+  let y;
+  if (target.matches('section[data-chapter]')) y = chapterScrollY(target, view);
+  else {
+    const section = target.id === 'lista-produtos' ? document.getElementById('acessorios') : target;
+    const heading = section.querySelector('.mt-shelf-head, .mt-store-inner > .mt-reviews-label, .mt-reviews-inner > .mt-reviews-label') || section;
+    y = heading.getBoundingClientRect().top + view.y - view.inset;
+  }
+  const max = Math.max(0, document.documentElement.scrollHeight - view.height);
+  window.scrollTo({top: Math.min(max, Math.max(0, y)), behavior: smooth && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'instant'});
+  return true;
+}
+
+document.addEventListener('click', e => {
+  if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  const link = e.target.closest?.('a[href^="#"]');
+  if (!link) return;
+  const hash = link.getAttribute('href');
+  if (!anchorTarget(hash)) return;
+  e.preventDefault();
+  if (location.hash !== hash) history.pushState(null, '', hash);
+  activeAnchor = hash;
+  navigateAnchor(hash);
+});
+for (const event of ['wheel','touchstart']) window.addEventListener(event, () => { activeAnchor = ''; }, {passive:true});
+window.addEventListener('keydown', e => {
+  if (['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '].includes(e.key)) activeAnchor = '';
+});
+window.addEventListener('hashchange', () => {
+  activeAnchor = location.hash;
+  if (activeAnchor) requestAnimationFrame(() => navigateAnchor(activeAnchor, false));
+});
+if (location.hash && anchorTarget(location.hash)) {
+  activeAnchor = location.hash;
+  requestAnimationFrame(() => { if (activeAnchor) navigateAnchor(activeAnchor, false); });
+  document.fonts?.ready.then(() => { if (activeAnchor) navigateAnchor(activeAnchor, false); });
+}
+
+function syncAnchorAfterCatalog() {
+  if (activeAnchor) requestAnimationFrame(() => { if (activeAnchor) navigateAnchor(activeAnchor, false); });
+}
+
+
 export function initUI() {
   const steps = [...document.querySelectorAll('.os li')];
   const html = document.documentElement;
@@ -111,7 +182,7 @@ async function carregarVitrine() {
       outros.hidden = !o.length; preencher(grupos.outros,o,'Nenhum outro produto encontrado.');
       status.textContent = catalogo.length ? filtrados.length + ' de ' + catalogo.length + ' produtos' : 'Novos produtos serão exibidos aqui quando cadastrados.';
     }
-    busca.addEventListener('input',render); ordem.addEventListener('change',render); render();
+    busca.addEventListener('input',render); ordem.addEventListener('change',render); render(); syncAnchorAfterCatalog();
   } catch { status.textContent = 'Não foi possível carregar o catálogo agora. Consulte a equipe pelo WhatsApp.'; }
 }
 carregarVitrine();
