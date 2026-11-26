@@ -1,7 +1,17 @@
 {
   "name": "megatech",
+  "main": "worker.js",
   "compatibility_date": "2026-11-23",
   "assets": {
-    "directory": "./"
-  }
+    "directory": "./",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "megatech-db",
+      "database_id": "71cb0769-0b99-4aae-a43e-fdcb46ca2abe",
+      "migrations_dir": "migrations"
+    }
+  ]
 }
