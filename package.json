@@ -4,7 +4,7 @@
   "description": "MegaTech Cell — assistência técnica e bancada interativa",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/build.mjs",
     "preview": "vite preview",
     "postinstall": "npm run build"
   },

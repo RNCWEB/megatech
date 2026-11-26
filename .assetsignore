@@ -1,11 +1,5 @@
 /*
 !/index.html
-!/estilo.css
-!/principal.js
-!/configuracao.js
-!/arte/
-!/arte/**
-!/fontes/
-!/fontes/**
 !/admin.html
-!/produtos.js
+!/assets/
+!/assets/**

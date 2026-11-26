@@ -1,0 +1,126 @@
+<!doctype html>
+<!-- RNCWEB -->
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MegaTech Cell — assistência técnica de celulares</title>
+    <meta
+      name="description"
+      content="Assistência técnica de celulares, acessórios e atendimento pelo WhatsApp da MegaTech Cell."
+    />
+    <meta name="theme-color" content="#0b0e11" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233e5568'/%3E%3Crect x='10' y='5' width='12' height='22' rx='3' fill='none' stroke='%23e9eef0' stroke-width='2'/%3E%3Cpath d='M13 9l4 6-3 3 5 6' stroke='%23e0962a' stroke-width='2' fill='none'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <canvas id="bench" aria-hidden="true"></canvas>
+    <div class="shade" aria-hidden="true"></div>
+
+    <header class="top">
+      <a class="brand" href="#chegou">MegaTech Cell</a>
+      <p class="open">Assistência técnica e acessórios</p>
+      <a class="btn btn-small" href="#orcamento">Pedir orçamento</a>
+    </header>
+
+    <nav class="os" aria-label="Etapas do conserto">
+      <p>Conheça a bancada</p>
+      <ol>
+        <li><a href="#chegou">Chegou</a></li>
+        <li><a href="#tela">Tela</a></li>
+        <li><a href="#bateria">Bateria</a></li>
+        <li><a href="#placa">Placa</a></li>
+        <li><a href="#precos">Serviços e produtos</a></li>
+        <li><a href="#orcamento">Pronto</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <section class="ch hero" id="chegou" data-chapter="0">
+        <div class="copy">
+          <h1>Assistência técnica MegaTech.</h1>
+          <p class="lead">
+            Reparos, manutenção e acessórios para o seu celular. Conheça a bancada em uma experiência interativa.
+          </p>
+          <p class="actions">
+            <a class="btn" href="#orcamento">Pedir orçamento</a>
+            <a class="link" href="#precos">Ver serviços</a>
+          </p>
+          <p class="hint">Mexa o cursor: a luminária da bancada acompanha.</p>
+        </div>
+      </section>
+
+      <section class="ch" id="tela" data-chapter="1">
+        <div class="copy">
+          <h2>Troca de tela.</h2>
+          <p>
+            Tela quebrada, sem imagem ou com falhas no toque? Consulte a solução adequada para o seu modelo.
+          </p>
+          <p><a class="btn" href="#orcamento">Consultar orçamento</a></p>
+        </div>
+      </section>
+
+      <section class="ch" id="bateria" data-chapter="2">
+        <div class="copy">
+          <h2>Troca de bateria.</h2>
+          <p>
+            Se a bateria descarrega rápido ou apresenta falhas, fale com a equipe para avaliar a substituição.
+          </p>
+          <p><a class="btn" href="#orcamento">Consultar orçamento</a></p>
+        </div>
+      </section>
+
+      <section class="ch" id="placa" data-chapter="3">
+        <div class="copy">
+          <h2>Diagnóstico e reparo.</h2>
+          <p>
+            Problemas de carga, câmera ou funcionamento? Informe o modelo e o defeito para consultar as opções de reparo.
+          </p>
+          <p><a class="btn" href="#orcamento">Consultar orçamento</a></p>
+        </div>
+      </section>
+
+      <section class="ch" id="precos" data-chapter="4">
+        <div class="copy wide">
+          <h2>Serviços e produtos.</h2>
+          <p>Troca de tela, bateria, câmera, conector de carga e revisão. Consulte valores e disponibilidade pelo WhatsApp.</p>
+          <div id="lista-produtos" class="vitrine">
+            <article><h3>Celulares</h3><a href="https://wa.me/5551996538103?text=Ol%C3%A1%21%20Gostaria%20de%20consultar%20os%20celulares%20dispon%C3%ADveis.">Consultar modelos</a></article>
+            <article><h3>Acessórios</h3><a href="https://wa.me/5551996538103?text=Ol%C3%A1%21%20Gostaria%20de%20consultar%20os%20acess%C3%B3rios%20dispon%C3%ADveis.">Consultar produtos</a></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="ch" id="orcamento" data-chapter="5">
+        <div class="copy">
+          <h2>Fale com a MegaTech.</h2>
+          <p>
+            Conte o que aconteceu com o seu aparelho e solicite um orçamento diretamente pelo WhatsApp.
+          </p>
+          <form id="orcamento-form" novalidate>
+            <label>
+              Modelo do aparelho
+              <input name="modelo" type="text" autocomplete="off" placeholder="Ex.: Galaxy S23, iPhone 13" />
+            </label>
+            <fieldset>
+              <legend>O que aconteceu</legend>
+              <label class="chip"><input type="radio" name="defeito" value="tela trincada" checked /><span>Tela trincada</span></label>
+              <label class="chip"><input type="radio" name="defeito" value="bateria dura pouco" /><span>Bateria dura pouco</span></label>
+              <label class="chip"><input type="radio" name="defeito" value="não carrega" /><span>Não carrega</span></label>
+              <label class="chip"><input type="radio" name="defeito" value="caiu na água" /><span>Caiu na água</span></label>
+              <label class="chip"><input type="radio" name="defeito" value="outro defeito" /><span>Outro</span></label>
+            </fieldset>
+            <label>
+              Seu nome
+              <input name="nome" type="text" autocomplete="given-name" />
+            </label>
+            <p class="form-error" role="alert"></p>
+            <button class="btn" type="submit">Enviar pelo WhatsApp</button>
+          </form>
+          <address>Consulte endereço e horários pelo WhatsApp.<br /><a href="https://wa.me/5551996538103"> (51) 99653-8103</a></address>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
