@@ -102,18 +102,19 @@ a {
   padding: 0.95rem 1.5rem;
   border: 0;
   border-radius: 6px;
-  background: #1261d6;
+  background: linear-gradient(135deg, #064bbb 0%, #0063cc 58%, #0752b8 100%);
   color: #fff;
   font: inherit;
   font-weight: 700;
   font-stretch: 110%;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 24px -10px rgba(0, 0, 0, 0.7);
-  transition: transform 0.15s, background 0.15s;
+  box-shadow: inset 0 0 0 1px #38caff, inset 0 1px 5px rgba(108, 223, 255, 0.30), 0 0 12px rgba(0, 145, 255, 0.35), 0 8px 20px -10px rgba(0, 0, 0, 0.7);
+  transition: transform 0.15s, box-shadow 0.2s, background 0.15s;
 }
 .btn:hover {
-  background: #1d70e7;
+  background: linear-gradient(135deg, #0756d1, #006cdb);
+  box-shadow: inset 0 0 0 1px #8ce8ff, 0 0 18px rgba(0, 157, 255, 0.55);
   transform: translateY(-1px);
 }
 .btn:active {
@@ -467,3 +468,6 @@ address {
 
 /* RNCWEB */
 .vitrine .produto-foto{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#f4f6f8;border-radius:4px;margin:0 0 .75rem;}
+
+/* RNCWEB */
+.btn:focus-visible{outline-color:#63dcff;}
