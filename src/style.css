@@ -102,19 +102,20 @@ a {
   padding: 0.95rem 1.5rem;
   border: 0;
   border-radius: 6px;
-  background: linear-gradient(135deg, #064bbb 0%, #0063cc 58%, #0752b8 100%);
-  color: #fff;
+  background: linear-gradient(180deg, #031d63 0%, #000b2f 48%, #00167b 100%);
+  color: #eaf8ff;
+  text-shadow: 0 0 2px #ffffff, 0 0 6px #6bd0ff, 0 0 11px #0849be;
   font: inherit;
   font-weight: 700;
   font-stretch: 110%;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: inset 0 0 0 1px #38caff, inset 0 1px 5px rgba(108, 223, 255, 0.30), 0 0 12px rgba(0, 145, 255, 0.35), 0 8px 20px -10px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0 0 0 1px #6bd0ff, inset 0 0 0 3px #0755e8, inset 0 0 10px #002bda, 0 0 3px 1px #6bd0ff, 0 0 7px 2px #087aff, 0 0 16px 3px rgba(0, 45, 255, .78), 0 0 26px rgba(0, 22, 123, .65);
   transition: transform 0.15s, box-shadow 0.2s, background 0.15s;
 }
 .btn:hover {
-  background: linear-gradient(135deg, #0756d1, #006cdb);
-  box-shadow: inset 0 0 0 1px #8ce8ff, 0 0 18px rgba(0, 157, 255, 0.55);
+  background: linear-gradient(180deg, #07378d 0%, #001448 48%, #0025a6 100%);
+  box-shadow: inset 0 0 0 1px #d2f5ff, inset 0 0 0 3px #168aff, inset 0 0 12px #0046ff, 0 0 4px 1px #a3e8ff, 0 0 10px 2px #0885ff, 0 0 20px 4px rgba(0, 63, 255, .85), 0 0 30px rgba(0, 30, 185, .65);
   transform: translateY(-1px);
 }
 .btn:active {
@@ -470,4 +471,4 @@ address {
 .vitrine .produto-foto{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#f4f6f8;border-radius:4px;margin:0 0 .75rem;}
 
 /* RNCWEB */
-.btn:focus-visible{outline-color:#63dcff;}
+.btn:focus-visible{outline-color:#6bd0ff;}
