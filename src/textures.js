@@ -129,7 +129,7 @@ export function matTextures(wCm, hCm, size) {
   g.font = `800 ${px * 1.15}px ${DISPLAY}`;
   if ('fontStretch' in g) g.fontStretch = 'expanded';
   g.fillStyle = ink(0.9);
-  g.fillText('MegaTech Cell', cm(3), cm(2.0));
+  g.fillText('MegaTech', cm(3), cm(2.0));
   if ('fontStretch' in g) g.fontStretch = 'normal';
   g.font = `500 ${px * 0.42}px ${DISPLAY}`;
   g.fillStyle = ink(0.7);
@@ -574,7 +574,7 @@ export class ScreenCanvas {
           ['Banco', 'Não foi possível confirmar sua digital.', 'há 12 min'],
         ]
       : [
-          ['MegaTech Cell', this.message || 'Consulte a equipe sobre seu aparelho.', 'agora'],
+          ['MegaTech', this.message || 'Consulte a equipe sobre seu aparelho.', 'agora'],
           ['Mãe', 'Aleluia! Agora atende quando eu ligar.', 'há 1 min'],
         ];
     cards.forEach(([title, body, when], i) => {

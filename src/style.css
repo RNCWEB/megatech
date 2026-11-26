@@ -102,8 +102,8 @@ a {
   padding: 0.95rem 1.5rem;
   border: 0;
   border-radius: 6px;
-  background: var(--kapton);
-  color: #1a1206;
+  background: #1261d6;
+  color: #fff;
   font: inherit;
   font-weight: 700;
   font-stretch: 110%;
@@ -113,7 +113,7 @@ a {
   transition: transform 0.15s, background 0.15s;
 }
 .btn:hover {
-  background: #f0a83c;
+  background: #1d70e7;
   transform: translateY(-1px);
 }
 .btn:active {
@@ -457,3 +457,10 @@ address {
 
 /* RNCWEB */
 .vitrine{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}.vitrine article{background:rgba(10,16,22,.86);padding:1rem;border:1px solid #ffffff30;border-radius:6px;overflow-wrap:anywhere}.vitrine h3{font-size:1.05rem;margin:0 0 .5rem}.vitrine p{margin:.3rem 0}.vitrine a{font-size:.9rem}.open::before{display:none}@media(max-width:400px){.vitrine{grid-template-columns:1fr}}
+
+/* RNCWEB */
+.brand-logo{display:block;width:clamp(110px,13vw,180px);height:auto;object-fit:contain;}
+.top-actions{display:flex;align-items:center;gap:.5rem;flex:none;}
+.top-actions .btn{white-space:nowrap;}
+#lista-produtos{scroll-margin-top:120px;}
+@media(max-width:760px){.top{gap:.5rem;padding-inline:clamp(.65rem,3vw,1.25rem)}.brand-logo{width:clamp(76px,26vw,135px)}.top-actions{gap:.35rem}.top-actions .btn-small{font-size:clamp(.7rem,2.8vw,.9rem);padding:.65rem .55rem;}}
