@@ -409,7 +409,7 @@ address {
 }
 
 /* a desmontagem das peças e a remontagem precisam de mais rolagem */
-#precos {
+section[data-chapter="4"] {
   min-height: 260vh;
 }
 
@@ -529,3 +529,7 @@ address {
 
 /* RNCWEB */
 .mt-shelf-head,.mt-store-inner>.mt-reviews-label,.mt-reviews-inner>.mt-reviews-label{scroll-margin-top:8rem}
+
+/* RNCWEB: os links apontam para o conteúdo, não para a área vazia da cena. */
+.ch .copy[id], #loja, #acessorios, #celulares-novos, #avaliacoes, #lista-produtos { scroll-margin-top: 8rem; }
+@media(max-aspect-ratio:115/100),(max-width:760px){html{scroll-behavior:auto}.ch .copy[id], #loja, #acessorios, #celulares-novos, #avaliacoes, #lista-produtos{scroll-margin-top:6.5rem}}

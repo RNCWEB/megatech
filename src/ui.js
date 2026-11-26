@@ -4,13 +4,13 @@ const WHATSAPP = '5551996538103';
 
 // RNCWEB
 export function navigationViewport() {
-  return { y: window.scrollY, height: window.innerHeight,
+  return { y: window.scrollY, height: window.visualViewport?.scale === 1 ? window.visualViewport.height : window.innerHeight,
     inset: Math.ceil(document.querySelector('.top')?.getBoundingClientRect().bottom || 0) + 12,
     narrow: matchMedia('(max-aspect-ratio: 115/100), (max-width: 760px)').matches };
 }
 
 export function chapterScrollY(section, view = navigationViewport()) {
-  if (section.id === 'chegou') return 0;
+  if (section.dataset.chapter === '0') return 0;
   const copy = section.querySelector('.copy');
   if (!copy) return section.getBoundingClientRect().top + view.y;
   const rect = copy.getBoundingClientRect();
@@ -32,14 +32,24 @@ function navigateAnchor(hash, smooth = true) {
   if (!target || target.hidden) return false;
   const view = navigationViewport();
   let y;
-  if (target.matches('section[data-chapter]')) y = chapterScrollY(target, view);
+  const chapter = target.closest('section[data-chapter]');
+  if (chapter) y = chapterScrollY(chapter, view);
   else {
-    const section = target.id === 'lista-produtos' ? document.getElementById('acessorios') : target;
-    const heading = section.querySelector('.mt-shelf-head, .mt-store-inner > .mt-reviews-label, .mt-reviews-inner > .mt-reviews-label') || section;
+    const heading = target.id === 'lista-produtos' ? document.getElementById('acessorios') : target;
     y = heading.getBoundingClientRect().top + view.y - view.inset;
   }
-  const max = Math.max(0, document.documentElement.scrollHeight - view.height);
-  window.scrollTo({top: Math.min(max, Math.max(0, y)), behavior: smooth && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'instant'});
+  const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+  const top = Math.min(max, Math.max(0, y));
+  if (Math.abs(window.scrollY - top) < 2) return true;
+  const animate = smooth && !view.narrow && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (animate) window.scrollTo({top, behavior:'smooth'});
+  else {
+    const root = document.documentElement;
+    const previous = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, top);
+    root.style.scrollBehavior = previous;
+  }
   return true;
 }
 
@@ -53,11 +63,24 @@ document.addEventListener('click', e => {
   if (location.hash !== hash) history.pushState(null, '', hash);
   activeAnchor = hash;
   navigateAnchor(hash);
+  if (navigationViewport().narrow) requestAnimationFrame(() => {
+    if (activeAnchor === hash) navigateAnchor(hash, false);
+  });
 });
 for (const event of ['wheel','touchstart']) window.addEventListener(event, () => { activeAnchor = ''; }, {passive:true});
 window.addEventListener('keydown', e => {
   if (['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '].includes(e.key)) activeAnchor = '';
 });
+let viewportFrame = 0;
+function realignViewport() {
+  if (!activeAnchor || !navigationViewport().narrow) return;
+  cancelAnimationFrame(viewportFrame);
+  viewportFrame = requestAnimationFrame(() => {
+    if (activeAnchor) navigateAnchor(activeAnchor, false);
+  });
+}
+window.addEventListener('resize', realignViewport, {passive:true});
+window.visualViewport?.addEventListener('resize', realignViewport, {passive:true});
 window.addEventListener('hashchange', () => {
   activeAnchor = location.hash;
   if (activeAnchor) requestAnimationFrame(() => navigateAnchor(activeAnchor, false));
