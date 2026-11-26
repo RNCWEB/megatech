@@ -537,48 +537,42 @@ section[data-chapter="4"] {
 /* RNCWEB */
 .top-actions .mt-phones-cta {
   position:relative; isolation:isolate; overflow:hidden;
-  display:flex; align-items:center; justify-content:center; gap:.55rem;
-  padding:.48rem .85rem;
-  background:linear-gradient(118deg,#c2f8ff 0%,#64dfff 42%,#38aaff 100%);
-  color:#031939; text-shadow:none;
-  box-shadow:inset 0 0 0 1px #edfdff,inset 0 0 0 3px #77d9ff,0 0 8px #55d7ff,0 0 20px #087affb0;
+  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  padding:.6rem 1rem;
+  background:linear-gradient(180deg,#052b83,#000e36 54%,#05247d);
+  color:#f1faff; font-weight:800;
+  box-shadow:inset 0 0 0 1px #b6efff,inset 0 0 0 3px #126bff,inset 0 0 14px #135dff,0 0 5px #74d8ff,0 0 14px #146bff,0 0 25px #003cff99;
 }
-.mt-phones-cta::before {
+.mt-phones-cta::after {
   content:""; position:absolute; z-index:-1; pointer-events:none;
-  inset:-30% auto -30% -65%; width:42%;
-  background:linear-gradient(90deg,transparent,#ffffffb0,transparent);
-  transform:translateX(0) skewX(-22deg);
-  animation:mt-phone-shine 3.8s ease-in-out 3;
+  inset:0 auto 0 -45%; width:35%;
+  background:linear-gradient(90deg,transparent,#b5f1ff55,transparent);
+  transform:skewX(-24deg);
+  animation:mt-phones-glint 4s ease-in-out 2;
 }
-@keyframes mt-phone-shine {
-  0%,60%{transform:translateX(0) skewX(-22deg)}
-  90%,100%{transform:translateX(440%) skewX(-22deg)}
+@keyframes mt-phones-glint {
+  0%,65%{transform:translateX(0) skewX(-24deg)}
+  90%,100%{transform:translateX(460%) skewX(-24deg)}
 }
-.mt-phones-icon{flex:none}
-.mt-phones-label{display:grid;gap:1px;text-align:left;line-height:1.14}
-.mt-phones-label small{font-size:.53rem;letter-spacing:.1em;font-weight:800}
-.mt-phones-label strong{font-size:1rem;font-weight:850}
-.mt-phones-arrow{font-size:1.15rem;flex:none;line-height:1}
+.mt-phones-icon{flex:none;filter:drop-shadow(0 0 3px #5cd6ff)}
+.mt-phones-arrow{flex:none;color:#b4eaff;font-size:1rem;line-height:1}
 .top-actions .mt-phones-cta:hover {
-  background:linear-gradient(118deg,#e5fcff,#7de8ff 48%,#45baff);
-  box-shadow:inset 0 0 0 1px #fff,0 0 12px #73e7ff,0 0 26px #087affb0;
+  background:linear-gradient(180deg,#0840a2,#00164a 54%,#0b329a);
+  box-shadow:inset 0 0 0 1px #fff,inset 0 0 0 3px #308aff,inset 0 0 15px #135dff,0 0 9px #74d8ff,0 0 24px #146bff;
 }
-@media(min-width:761px) and (max-width:1120px){
+@media(min-width:761px) and (max-width:1000px){
   .top .open{display:none}
   .top .brand{margin-right:auto}
-  .top{gap:.8rem}
 }
 @media(max-width:760px){
-  .top{display:grid;grid-template-columns:minmax(70px,auto) minmax(0,1fr);align-items:center;column-gap:clamp(.45rem,2vw,.8rem);padding-top:.8rem;padding-bottom:1.7rem}
-  .top .brand{margin:0;min-width:0}
-  .top .brand-logo{width:clamp(70px,25vw,115px)}
-  .top-actions{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.45rem;min-width:0}
-  .top-actions .btn-small:not(.mt-phones-cta){text-align:center;padding:.48rem .38rem;font-size:clamp(.69rem,2.75vw,.86rem);line-height:1.3}
-  .top-actions .mt-phones-cta{grid-column:1/-1;justify-content:space-between;gap:.38rem;padding:.42rem .65rem}
-  .mt-phones-label{flex:1}
-  .mt-phones-label strong{font-size:clamp(.86rem,3.45vw,1.03rem)}
-  .mt-phones-label small{font-size:.48rem}
-  .mt-phones-icon{width:18px;height:18px}
-  .ch .copy[id],#loja,#acessorios,#celulares-novos,#avaliacoes,#lista-produtos{scroll-margin-top:8.5rem}
+  .top{gap:clamp(.35rem,1.5vw,.6rem)}
+  .top .brand{flex:0 1 auto;min-width:0}
+  .top .brand-logo{width:clamp(68px,23vw,135px)}
+  .top-actions{gap:clamp(.35rem,1.5vw,.55rem);min-width:0}
+  .top-actions .btn-small{font-size:clamp(.68rem,2.65vw,.9rem);padding:.65rem clamp(.4rem,1.5vw,.7rem);line-height:1.25}
+  .top-actions .mt-phones-cta{gap:.3rem}
+  .mt-phones-icon{width:15px;height:15px}
+  .mt-phones-arrow{display:none}
 }
-@media(prefers-reduced-motion:reduce){.mt-phones-cta::before{animation:none}}
+@media(max-width:390px){.mt-phones-icon{display:none}}
+@media(prefers-reduced-motion:reduce){.mt-phones-cta::after{animation:none}}
