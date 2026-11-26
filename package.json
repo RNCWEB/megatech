@@ -1,0 +1,32 @@
+{
+  "name": "megatech-cell",
+  "version": "1.0.0",
+  "description": "MegaTech Cell — assistência técnica e bancada interativa",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RNCWEB/megatech.git"
+  },
+  "keywords": [],
+  "author": "RNCWEB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RNCWEB/megatech/issues"
+  },
+  "homepage": "https://github.com/RNCWEB/megatech#readme",
+  "devDependencies": {
+    "vite": "^8.3.7"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource/permanent-marker": "^5.3.0",
+    "postprocessing": "^6.39.6",
+    "three": "^0.187.0"
+  },
+  "private": true,
+  "type": "module"
+}
