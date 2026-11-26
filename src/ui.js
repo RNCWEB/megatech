@@ -53,7 +53,7 @@ function vitrineDoProduto(p) {
   const c = normalizar(p.categoria);
   if (/^(celulares?|smartphones?|aparelhos?|telefones?)\s+nov[oa]s?$/.test(c) || /^(novo|novos|celular novo|celulares novos)$/.test(c)) return 'celulares';
   if (/servic|assistencia|reparo|conserto|mao de obra/.test(c)) return 'servicos';
-  if (/acessor|capinha|capa|pelicul|carregador|cabo|fone|adaptador|suporte|power\s*bank/.test(c)) return 'acessorios';
+  if (/acessor|capinha|\bcapa[s]?\b|pelicul|carregador|cabo|\bfones?\b|adaptador|suporte|power\s*bank/.test(c)) return 'acessorios';
   return 'outros';
 }
 
