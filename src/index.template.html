@@ -40,8 +40,8 @@
 
     <header class="top">
       <a class="brand" href="#chegou" aria-label="MegaTech"><img class="brand-logo" src="/src/brand-logo.webp" width="200" height="90" alt="MegaTech — Soluções para seu celular" /></a>
-      <p class="open">Assistência técnica e acessórios</p>
-      <div class="top-actions"><a class="btn btn-small" href="#orcamento">Pedir orçamento</a><a class="btn btn-small" href="#lista-produtos">Produtos</a></div>
+      <p class="open">Assistência técnica, acessórios e celulares</p>
+      <div class="top-actions"><a class="btn btn-small" href="#orcamento">Pedir orçamento</a><a class="btn btn-small" href="#loja">Produtos</a></div>
     </header>
 
     <nav class="os" aria-label="Etapas do conserto">
@@ -51,7 +51,7 @@
         <li><a href="#tela">Tela</a></li>
         <li><a href="#bateria">Bateria</a></li>
         <li><a href="#placa">Placa</a></li>
-        <li><a href="#precos">Serviços e produtos</a></li>
+        <li><a href="#precos">Serviços</a></li>
         <li><a href="#orcamento">Pronto</a></li>
       </ol>
     </nav>
@@ -61,12 +61,17 @@
         <div class="copy">
           <h1>Assistência técnica MegaTech.</h1>
           <p class="lead">
-            Reparos, manutenção e acessórios para o seu celular. Conheça a bancada em uma experiência interativa.
+            Reparos, manutenção, acessórios e celulares. Conheça a bancada em uma experiência interativa.
           </p>
           <p class="actions">
             <a class="btn" href="#orcamento">Pedir orçamento</a>
             <a class="link" href="#precos">Ver serviços</a>
           </p>
+          <nav class="mt-quick" aria-label="Escolha o que procura">
+            <a href="#precos"><span>01</span>Assistência técnica <span aria-hidden="true">↗</span></a>
+            <a href="#acessorios"><span>02</span>Acessórios <span aria-hidden="true">↗</span></a>
+            <a href="#celulares-novos"><span>03</span>Celulares novos <span aria-hidden="true">↗</span></a>
+          </nav>
           <p class="hint">Mexa o cursor: a luminária da bancada acompanha.</p>
         </div>
       </section>
@@ -103,13 +108,16 @@
 
       <section class="ch" id="precos" data-chapter="4">
         <div class="copy wide">
-          <h2>Serviços e produtos.</h2>
+          <h2>Serviços de assistência.</h2>
           <p>Troca de tela, bateria, câmera, conector de carga e revisão. Consulte valores e disponibilidade pelo WhatsApp.</p>
-          <div id="lista-produtos" class="vitrine">
-            <article><h3>Celulares</h3><a href="https://wa.me/5551996538103?text=Ol%C3%A1%21%20Gostaria%20de%20consultar%20os%20celulares%20dispon%C3%ADveis.">Consultar modelos</a></article>
-            <article><h3>Acessórios</h3><a href="https://wa.me/5551996538103?text=Ol%C3%A1%21%20Gostaria%20de%20consultar%20os%20acess%C3%B3rios%20dispon%C3%ADveis.">Consultar produtos</a></article>
+          <div class="mt-service-list">
+            <a href="#tela">Troca de tela <span>↗</span></a>
+            <a href="#bateria">Troca de bateria <span>↗</span></a>
+            <a href="#placa">Diagnóstico e reparo <span>↗</span></a>
           </div>
-          <a class="btn mt-products-reviews" href="#avaliacoes">Ver avaliações de clientes</a>
+          <div id="lista-servicos" class="vitrine" hidden></div>
+          <div class="mt-service-actions"><a class="btn" href="#orcamento">Pedir orçamento</a><a class="link" href="#loja">Conhecer a loja</a></div>
+          <a class="link mt-products-reviews" href="#avaliacoes">Ver avaliações de clientes</a>
         </div>
       </section>
 
@@ -140,6 +148,36 @@
             <button class="btn" type="submit">Enviar pelo WhatsApp</button>
           </form>
           <address>Consulte endereço e horários pelo WhatsApp.<br /><a href="https://wa.me/5551996538103"> (51) 99653-8103</a></address>
+        </div>
+      </section>
+
+      <section id="loja" class="mt-store" aria-labelledby="mt-store-title">
+        <div class="mt-store-inner">
+          <p class="mt-reviews-label">MegaTech / Loja</p>
+          <h2 id="mt-store-title">O próximo upgrade começa aqui.</h2>
+          <p class="mt-store-intro">Escolha o que procura. Consulte disponibilidade e compre diretamente pelo WhatsApp.</p>
+          <div class="mt-store-gates">
+            <a href="#acessorios" class="mt-gate"><svg viewBox="0 0 200 150" aria-hidden="true" fill="none"><rect x="26" y="38" width="65" height="83" rx="10" fill="#101e2d" stroke="#6bd0ff" stroke-width="2"/><path d="M43 38V19m31 19V19" stroke="#b9c6ce" stroke-width="6" stroke-linecap="round"/><rect x="46" y="104" width="25" height="7" rx="3" fill="#6bd0ff"/><path d="M133 23c60 27-27 58 13 88 14 11 26 7 31-7" stroke="#6bd0ff" stroke-width="5" stroke-linecap="round"/><rect x="123" y="10" width="17" height="25" rx="4" fill="#182c45" stroke="#a3e8ff"/><path d="M177 104v-16" stroke="#b9c6ce" stroke-width="6" stroke-linecap="round"/></svg><div><small>01 / ACESSÓRIOS</small><h3>Equipe seu celular.</h3><p>Capas, carregadores, cabos e mais.</p><span>Explorar acessórios ↗</span></div></a>
+            <a href="#celulares-novos" class="mt-gate"><svg viewBox="0 0 200 150" aria-hidden="true" fill="none"><g transform="rotate(-10 75 77)"><rect x="37" y="14" width="72" height="123" rx="13" fill="#192b3b" stroke="#a3e8ff" stroke-width="2"/><rect x="45" y="22" width="32" height="35" rx="8" fill="#0b1019" stroke="#477da8"/><circle cx="54" cy="31" r="5" stroke="#6bd0ff"/><circle cx="68" cy="45" r="5" stroke="#6bd0ff"/></g><g transform="rotate(8 126 77)"><rect x="91" y="12" width="73" height="126" rx="13" fill="#0b1320" stroke="#a3e8ff" stroke-width="2"/><rect x="96" y="17" width="63" height="116" rx="9" fill="#102b53"/><path d="M96 104L159 40V91L117 133H96Z" fill="#1760ad"/><path d="M96 80L159 17" stroke="#6bd0ff" stroke-width="2"/><rect x="115" y="23" width="25" height="6" rx="3" fill="#0b1320"/></g></svg><div><small>02 / CELULARES NOVOS</small><h3>Seu próximo aparelho.</h3><p>Confira os modelos disponíveis.</p><span>Explorar celulares ↗</span></div></a>
+          </div>
+          <div class="mt-store-tools" role="group" aria-label="Filtros do catálogo">
+            <label>Buscar produto<input id="mt-search" type="search" placeholder="Nome, marca, modelo, armazenamento…"></label>
+            <label>Ordenar<select id="mt-sort"><option value="featured">Destaques</option><option value="asc">Menor preço</option><option value="desc">Maior preço</option><option value="name">Nome A–Z</option></select></label>
+          </div>
+          <p class="mt-store-status" id="mt-catalog-status" role="status">Consulte os produtos pelo WhatsApp.</p>
+          <section id="acessorios" class="mt-shelf" aria-labelledby="mt-accessories-title">
+            <div class="mt-shelf-head"><div><small>01 / VITRINE</small><h3 id="mt-accessories-title">Acessórios.</h3></div><a class="link" href="https://wa.me/5551996538103?text=Ol%C3%A1%21%20Gostaria%20de%20consultar%20os%20acess%C3%B3rios.">Consultar acessórios ↗</a></div>
+            <div id="lista-produtos" class="vitrine mt-catalog-grid"><p class="mt-empty">Consulte os acessórios disponíveis com a equipe.</p></div>
+          </section>
+          <section id="celulares-novos" class="mt-shelf" aria-labelledby="mt-phones-title">
+            <div class="mt-shelf-head"><div><small>02 / VITRINE</small><h3 id="mt-phones-title">Celulares novos.</h3></div><a class="link" href="https://wa.me/5551996538103?text=Ol%C3%A1%21%20Gostaria%20de%20consultar%20os%20celulares%20novos.">Consultar modelos ↗</a></div>
+            <div id="lista-celulares" class="vitrine mt-catalog-grid"><p class="mt-empty">Consulte os celulares novos disponíveis com a equipe.</p></div>
+          </section>
+          <section id="outros-produtos" class="mt-shelf" aria-labelledby="mt-other-title" hidden>
+            <div class="mt-shelf-head"><div><small>03 / VITRINE</small><h3 id="mt-other-title">Outros produtos.</h3></div></div>
+            <div id="lista-outros" class="vitrine mt-catalog-grid"></div>
+          </section>
+          <div class="mt-store-bottom"><a class="btn" href="#avaliacoes">Ver avaliações de clientes</a><a class="link" href="#chegou">Voltar para a bancada ↑</a></div>
         </div>
       </section>
 
