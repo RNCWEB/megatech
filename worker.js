@@ -2,13 +2,32 @@
 const schema = ["-- RNCWEB\nCREATE TABLE IF NOT EXISTS produtos (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  nome TEXT NOT NULL CHECK(length(trim(nome)) BETWEEN 1 AND 150),\n  descricao TEXT NOT NULL DEFAULT '' CHECK(length(descricao) <= 2000),\n  categoria TEXT NOT NULL DEFAULT '' CHECK(length(categoria) <= 100),\n  preco_centavos INTEGER NOT NULL CHECK(typeof(preco_centavos) = 'integer' AND preco_centavos >= 0),\n  preco_promocional_centavos INTEGER CHECK(preco_promocional_centavos IS NULL OR (typeof(preco_promocional_centavos) = 'integer' AND preco_promocional_centavos >= 0 AND preco_promocional_centavos < preco_centavos)),\n  estoque INTEGER NOT NULL DEFAULT 0 CHECK(typeof(estoque) = 'integer' AND estoque >= 0),\n  imagem_url TEXT NOT NULL DEFAULT '' CHECK(length(imagem_url) <= 2048),\n  ativo INTEGER NOT NULL DEFAULT 1 CHECK(ativo IN (0, 1)),\n  destaque INTEGER NOT NULL DEFAULT 0 CHECK(destaque IN (0, 1)),\n  criado_em TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),\n  atualizado_em TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))\n)","CREATE INDEX IF NOT EXISTS idx_produtos_catalogo ON produtos(ativo, destaque DESC, id DESC)"];
 const fields = ["nome","descricao","categoria","preco_centavos","preco_promocional_centavos","estoque","imagem_url","ativo","destaque"];
 const json = (body,status=200) => new Response(JSON.stringify(body),{status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store","X-Content-Type-Options":"nosniff"}});
-async function authorized(req,env){
-  const key=env.ADMIN_TOKEN;
-  const candidate=req.headers.get("Authorization")||"";
-  if(typeof key!=="string"||key.length<24||candidate.length>512||!candidate.startsWith("Bearer "))return false;
-  const hash=async v=>new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(v)));
-  const [a,b]=await Promise.all([hash(candidate.slice(7)),hash(key)]);
-  let diff=0;for(let i=0;i<a.length;i++)diff|=a[i]^b[i];return diff===0;
+async function digest(value){
+  const bytes=new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value)));
+  return Array.from(bytes,b=>b.toString(16).padStart(2,"0")).join("");
+}
+function equal(a,b){
+  if(typeof a!=="string"||typeof b!=="string"||a.length!==64||b.length!==64)return false;
+  let diff=0;for(let i=0;i<64;i++)diff|=a.charCodeAt(i)^b.charCodeAt(i);return diff===0;
+}
+async function adminAccess(req,env){
+  const header=req.headers.get("Authorization")||"";
+  const token=header.startsWith("Bearer ")&&header.length<=512?header.slice(7):"";
+  if(typeof env.ADMIN_TOKEN==="string"&&env.ADMIN_TOKEN.length>=24){
+    if(!token||!equal(await digest(token),await digest(env.ADMIN_TOKEN)))return json({erro:"Credencial inválida."},401);
+    return null;
+  }
+  let row;
+  try{row=await env.DB.prepare("SELECT chave_inicial, hash FROM admin_acesso WHERE id=1").first();}
+  catch(e){if(String(e).includes("no such table"))return json({erro:"Configure a chave administrativa no console D1."},503);throw e;}
+  if(!row)return json({erro:"Configure a chave administrativa no console D1."},503);
+  if(!/^[a-f0-9]{64}$/.test(token))return json({erro:"Credencial inválida."},401);
+  const hashed=await digest(token);
+  if(row.hash){return equal(hashed,row.hash)?null:json({erro:"Credencial inválida."},401);}
+  if(!row.chave_inicial||!equal(hashed,await digest(row.chave_inicial)))return json({erro:"Credencial inválida."},401);
+  const r=await env.DB.prepare("UPDATE admin_acesso SET hash=?, chave_inicial=NULL WHERE id=1 AND hash IS NULL AND chave_inicial=?").bind(hashed,token).run();
+  if(!r.meta.changes){const current=await env.DB.prepare("SELECT hash FROM admin_acesso WHERE id=1").first();if(!equal(hashed,current?.hash))return json({erro:"Credencial inválida."},401);}
+  return null;
 }
 async function setup(db){await db.batch(schema.map(s=>db.prepare(s)));}
 async function query(db,sql,args=[]){
@@ -45,10 +64,8 @@ export default {async fetch(req,env){
       return json({produtos:r.results});
     }
     if(!path.startsWith("/api/admin/"))return json({erro:"Não encontrado."},404);
-    if(typeof env.ADMIN_TOKEN!=="string"||!env.ADMIN_TOKEN)return json({erro:"ADMIN_TOKEN ausente no Worker de produção. Configure em Settings > Variables and Secrets (não em Build)."},503);
-    if(env.ADMIN_TOKEN.length<24)return json({erro:"A chave ADMIN_TOKEN configurada tem menos de 24 caracteres. Substitua por uma chave aleatória de 32 caracteres."},503);
-    if(!await authorized(req,env))return json({erro:"Credencial inválida."},401);
     if(req.headers.get("Origin")&&req.headers.get("Origin")!==url.origin)return json({erro:"Origem não autorizada."},403);
+    const denied=await adminAccess(req,env);if(denied)return denied;
     if(path==="/api/admin/produtos"&&method==="GET"){
       const r=await query(env.DB,"SELECT * FROM produtos ORDER BY id DESC LIMIT 500");return json({produtos:r.results});
     }
