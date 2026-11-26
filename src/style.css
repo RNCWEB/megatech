@@ -464,3 +464,6 @@ address {
 .top-actions .btn{white-space:nowrap;}
 #lista-produtos{scroll-margin-top:120px;}
 @media(max-width:760px){.top{gap:.5rem;padding-inline:clamp(.65rem,3vw,1.25rem)}.brand-logo{width:clamp(76px,26vw,135px)}.top-actions{gap:.35rem}.top-actions .btn-small{font-size:clamp(.7rem,2.8vw,.9rem);padding:.65rem .55rem;}}
+
+/* RNCWEB */
+.vitrine .produto-foto{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#f4f6f8;border-radius:4px;margin:0 0 .75rem;}

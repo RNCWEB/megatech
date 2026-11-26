@@ -61,6 +61,23 @@ async function carregarVitrine() {
       const link = document.createElement('a');
       link.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Tenho interesse em ' + p.nome + '.');
       link.textContent = 'Consultar pelo WhatsApp';
+      if (typeof p.imagem_url === 'string' && p.imagem_url.trim()) {
+        try {
+          const url = new URL(p.imagem_url, window.location.origin);
+          const interna = url.origin === window.location.origin && /^\/api\/fotos\/[a-f0-9-]{36}$/.test(url.pathname);
+          if ((interna || url.protocol === 'https:') && !url.username && !url.password) {
+            const foto = document.createElement('img');
+            foto.className = 'produto-foto';
+            foto.alt = p.nome;
+            foto.loading = 'lazy';
+            foto.decoding = 'async';
+            foto.referrerPolicy = 'no-referrer';
+            foto.addEventListener('error', () => foto.remove(), { once: true });
+            foto.src = url.href;
+            card.append(foto);
+          }
+        } catch {}
+      }
       card.append(titulo, preco, link);
       return card;
     });
