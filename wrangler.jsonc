@@ -14,5 +14,8 @@
       "migrations_dir": "migrations"
     }
   ],
-  "keep_vars": true
+  "keep_vars": true,
+  "build": {
+    "command": "npm run build"
+  }
 }
