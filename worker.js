@@ -45,7 +45,8 @@ export default {async fetch(req,env){
       return json({produtos:r.results});
     }
     if(!path.startsWith("/api/admin/"))return json({erro:"Não encontrado."},404);
-    if(!env.ADMIN_TOKEN||env.ADMIN_TOKEN.length<24)return json({erro:"Acesso administrativo ainda não configurado."},503);
+    if(typeof env.ADMIN_TOKEN!=="string"||!env.ADMIN_TOKEN)return json({erro:"ADMIN_TOKEN ausente no Worker de produção. Configure em Settings > Variables and Secrets (não em Build)."},503);
+    if(env.ADMIN_TOKEN.length<24)return json({erro:"A chave ADMIN_TOKEN configurada tem menos de 24 caracteres. Substitua por uma chave aleatória de 32 caracteres."},503);
     if(!await authorized(req,env))return json({erro:"Credencial inválida."},401);
     if(req.headers.get("Origin")&&req.headers.get("Origin")!==url.origin)return json({erro:"Origem não autorizada."},403);
     if(path==="/api/admin/produtos"&&method==="GET"){
