@@ -576,3 +576,27 @@ section[data-chapter="4"] {
 }
 @media(max-width:390px){.mt-phones-icon{display:none}}
 @media(prefers-reduced-motion:reduce){.mt-phones-cta::after{animation:none}}
+
+/* RNCWEB */
+.mt-about{position:relative;background:#0b0e11;color:var(--ink);padding:clamp(4rem,8vw,7rem) var(--pad);border-top:1px solid #6bd0ff38}
+.mt-about-inner{max-width:74rem;margin:auto;padding-right:clamp(0rem,12vw,9rem);scroll-margin-top:8rem}
+.mt-about-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.3fr);gap:clamp(1.8rem,5vw,4.5rem);align-items:start}
+.mt-about-date{display:flex;flex-direction:column;align-items:flex-start;padding:clamp(1.25rem,3vw,2rem);border:1px solid #315577;border-radius:8px;background:linear-gradient(145deg,#111f30,#0b1018);min-width:0}
+.mt-about-overline{font-size:.75rem;color:#a3e8ff;text-transform:uppercase;letter-spacing:.18em;font-weight:700}
+.mt-about-year{font-size:clamp(3.7rem,8vw,7rem);line-height:1;letter-spacing:-.06em;font-weight:800;color:#d7f3ff;margin:.55rem 0 .75rem}
+.mt-about-caption{color:var(--ink-soft);font-size:.95rem}
+.mt-about-copy{min-width:0}
+.mt-about-copy h2{margin:0 0 1rem}
+.mt-about-copy>p,.mt-about-owner p{color:var(--ink-soft);max-width:none;line-height:1.7}
+.mt-about-owner{padding:1.25rem 0;border-block:1px solid #6bd0ff38}
+.mt-about-owner-heading{display:flex;align-items:center;gap:.85rem;margin-bottom:.8rem}
+.mt-about-owner-mark{display:grid;place-items:center;width:3rem;height:3rem;flex:none;border-radius:50%;border:1px solid #6bd0ff70;background:#132d50;color:#bdeaff;font-size:.95rem;font-weight:800}
+.mt-about-owner h3{font-size:1.2rem;line-height:1.2;margin:0}
+.mt-about-owner-heading div>span{font-size:.83rem;color:#9adfff}
+.mt-about-owner p{margin:0}
+.mt-about-actions{display:flex;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:1.5rem}
+.mt-about-actions .link,.mt-about-service-links .link{color:#a3e8ff;font-size:.9rem}
+.mt-about-service-links{display:flex;flex-wrap:wrap;gap:.8rem 1.25rem;margin-top:1.25rem}
+.mt-about-service-links .mt-products-reviews{margin-top:0;text-align:left}
+@media(max-width:1000px){.mt-about-inner{padding-right:0}}
+@media(max-width:700px){.mt-about-grid{grid-template-columns:minmax(0,1fr);gap:1.5rem}.mt-about-inner{scroll-margin-top:6.5rem}.mt-about-year{font-size:clamp(3.7rem,16vw,5.5rem)}.mt-about-date{padding:1.25rem}}
